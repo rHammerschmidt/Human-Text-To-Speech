@@ -4,7 +4,7 @@ package HumanTextToSpeech;
  * The LoadFiles class reads all of the audio files names and saves them as an
  * ArrayList of string without the .wav identifier
  * 
- * @author Robert
+ * @author Robert Hammerschmidt
  */
 import java.util.ArrayList;
 import java.io.File;
@@ -17,7 +17,8 @@ public class LoadFiles {
 	public ArrayList<String> GetWords()
 	{
 		ArrayList<String> listOfAudioSaying = new ArrayList<String>();
-		File folder = new File("C:/Users/Robert/eclipse-workspace/HumanTextToSpeech/AudioFiles/");
+		String cwd = new File("").getAbsolutePath();	//find the current working directory
+		File folder = new File(cwd + "/AudioFiles/");	//access the AudioFiles directory from the cwd
 		File[] listOfFiles = folder.listFiles();
 		
 		for (File file : listOfFiles) {
