@@ -24,8 +24,6 @@ package HumanTextToSpeech;
 
 import java.io.File;
 //import the needed standard libraries
-//import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -34,35 +32,39 @@ public class HumanSpeech {
 	//global list of the loaded audio files
 	private static ArrayList<String> loadedFiles = new ArrayList<String>();
 	private static String cwd = new File("").getAbsolutePath();	//The current working directory E.X.: C:\Users\etc..
+	private static String audioFilePath = cwd + "/AudioFiles/";	//the path to all the audio files
+	private static AudioPlayer HumanSpeechPlayer = new AudioPlayer();	//declare an instance of AudioPlayer class
 	
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args){
 		//give an introduction
-		System.out.println("Welcome to the Human Text to Speech Program\nType what you want to say here:");
+		System.out.println("Welcome to the Human Text to Speech Program\nType what you want to say here (enter q to exit):");
 		LoadFiles load = new LoadFiles();	//declare an instance of LoadFiles class
-		loadedFiles = load.GetWords();	//loaded the words 
+		loadedFiles = load.GetWords();	//loaded the words from the LoadFiles class "GetWords()" method
 		
-		String audioFilePath = cwd + "/AudioFiles/javaTestScream.wav";
-        AudioPlayer HumanSpeechPlayer = new AudioPlayer();	//declare an instance of AudioPlayer class
-        //player.play(audioFilePath);	//plays java test scream
-        
         //get text input to translate to speech
         Scanner textInput = new Scanner(System.in);	//declare scanner
         String inputLine = textInput.nextLine();	//read input line
+        //continue getting text input until 'q' is read
         String[] wordsInLine = inputLine.replaceAll("[^a-zA-Z ]", "").toLowerCase().split("\\s+");	//split by each space and remove punctuation and upper case
-        
-        for(int wordIndex = 0; wordIndex < wordsInLine.length; wordIndex++)
-        {
-        	if(loadedFiles.contains(wordsInLine[wordIndex]))
-        	{	//if the word matches one of the loaded audio files
-        		audioFilePath = cwd + "/AudioFiles/" + wordsInLine[wordIndex] + ".wav";
-        		System.out.println("Playback started for " + wordsInLine[wordIndex]);
-        		HumanSpeechPlayer.ConvertToAudioInputStream(audioFilePath);
-        	}
-        	else
-        	{	//else the word did not match one of the loaded audio files
-        		HumanSpeechPlayer.playTextAudio(wordsInLine[wordIndex]);
-        	}
-        }
+        while(wordsInLine[0].compareTo("q") != 0)
+        {	//while the first text entered isn't q
+	        for(int wordIndex = 0; wordIndex < wordsInLine.length; wordIndex++)
+	        {
+	        	if(loadedFiles.contains(wordsInLine[wordIndex]))
+	        	{	//if the word matches one of the loaded audio files
+	        		audioFilePath = cwd + "/AudioFiles/" + wordsInLine[wordIndex] + ".wav";
+	        		System.out.println("Playback started for " + wordsInLine[wordIndex]);
+	        		HumanSpeechPlayer.ConvertToAudioInputStream(audioFilePath);
+	        	}
+	        	else
+	        	{	//else the word did not match one of the loaded audio files
+	        		HumanSpeechPlayer.playTextAudio(wordsInLine[wordIndex]);
+	        	}
+	        }
+	        System.out.println("Please enter your next line to say (enter q to exit):");
+	        inputLine = textInput.nextLine();	//read input line
+	        wordsInLine = inputLine.replaceAll("[^a-zA-Z ]", "").toLowerCase().split("\\s+");	//split by each space and remove punctuation and upper case
+		}	//end of while loop that goes on until q is entered
 	}	//end of Main()
 
 }

@@ -3,6 +3,9 @@ package HumanTextToSpeech;
 import java.io.File;
 import java.io.IOException;
 
+//test all sound lib
+import sun.audio.*;
+
 //import the sound libraries to play audio
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
