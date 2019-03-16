@@ -6,7 +6,7 @@ the corresponding .wav file for each word in the "AudioFiles" folder.  To add
 your words into the program, please add them to the "AudioFiles" folder and 
 make sure that the .wav file is titled with the word being said.
  
-* Audio files located at: C:/Users/Robert/eclipse-workspace/HumanTextToSpeech/AudioFiles/
+* Audio files located at: C:/Users/"UserName"/eclipse-workspace/HumanTextToSpeech/AudioFiles/
 
 * File "marytts-builder-5.2-jar-with-dependencies" could not be added because it is above 25 MB. Make sure to add to TTSpeechResources/Libraries before build.
 
