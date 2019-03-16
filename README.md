@@ -9,3 +9,5 @@ make sure that the .wav file is titled with the word being said.
 * Audio files located at: C:/Users/Robert/eclipse-workspace/HumanTextToSpeech/AudioFiles/
 
 * File "marytts-builder-5.2-jar-with-dependencies" could not be added because it is above 25 MB. Make sure to add to TTSpeechResources/Libraries before build.
+
+* Follow progress through the Taiga board: https://tree.taiga.io/project/rhammerschmidt-text-to-human-speech/timeline
